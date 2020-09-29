@@ -42,10 +42,11 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- DEPENDÊNCIA DO BANCO DE DADOS H2 -->
+		<!-- DEPENDÊNCIA DO BANCO DE DADOS - AZURE -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>7.0.0.jre8</version>
 		</dependency>
 
 		<dependency>
