@@ -3,7 +3,7 @@ INSERT INTO TB_DTN_USUARIO (nm_usuario, ds_email, ds_senha, fl_usuario) VALUES
 ('Laura Martins', 'laura@gmail.com', 'laurinha123', null);
 
 INSERT INTO TB_DTN_USUARIO (nm_usuario, ds_email, ds_senha, fl_usuario) VALUES
-('Leonardo Carnetti', 'leonardo@gmail.com', 'leonardo123', null);
+('Arthur Carnetti', 'leonardo@gmail.com', 'leonardo123', null);
 
 INSERT INTO TB_DTN_USUARIO (nm_usuario, ds_email, ds_senha, fl_usuario) VALUES
 ('Giovana Freitas', 'giovana@gmail.com', 'giovana123', null);
