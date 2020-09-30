@@ -46,8 +46,8 @@ INSERT INTO TB_DTN_POSTAGEM_FAVORITA (cd_postagem, cd_usuario) VALUES
 
 
 --POSTAGEM REAÇÃO
-INSERT INTO TB_DTN_POSTAGEM_REACAO (cd_usuario, cd_postagem) VALUES
-(1, 3);
+--INSERT INTO TB_DTN_POSTAGEM_REACAO (cd_usuario, cd_postagem) VALUES
+--(1, 3);
 
 INSERT INTO TB_DTN_POSTAGEM_REACAO (cd_usuario, cd_postagem) VALUES
 (1, 4);
