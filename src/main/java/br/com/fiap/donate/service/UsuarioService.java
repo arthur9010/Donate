@@ -3,6 +3,7 @@ package br.com.fiap.donate.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.donate.model.Usuario;
@@ -10,7 +11,9 @@ import br.com.fiap.donate.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-	private final UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
 	public UsuarioService(UsuarioRepository usuarioRepository) {
 		this.usuarioRepository = usuarioRepository;
@@ -33,9 +36,8 @@ public class UsuarioService {
 	}
 
 	public Usuario update(Long id, Usuario user) {
-		Optional<Usuario> usuarioOP = usuarioRepository.findById(id);
+		Usuario usuario = usuarioRepository.getOne(id);
 			
-		Usuario usuario = usuarioOP.get();
 		usuario.setNome(user.getNome());
 		usuario.setEmail(user.getEmail());
 		usuario.setSenha(user.getSenha());
@@ -43,8 +45,4 @@ public class UsuarioService {
 		
 		return usuarioRepository.save(usuario);
 	}
-	
-//	public Usuario getOne(Long id){
-//		return usuarioRepository.getOne(id);
-//	}
 }

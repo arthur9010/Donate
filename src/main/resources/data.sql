@@ -3,7 +3,7 @@ INSERT INTO TB_DTN_USUARIO (nm_usuario, ds_email, ds_senha, fl_usuario) VALUES
 ('Laura Martins', 'laura@gmail.com', 'laurinha123', null);
 
 INSERT INTO TB_DTN_USUARIO (nm_usuario, ds_email, ds_senha, fl_usuario) VALUES
-('Arthur Carnetti', 'leonardo@gmail.com', 'leonardo123', null);
+('Leonardo Carnetti', 'leonardo@gmail.com', 'leonardo123', null);
 
 INSERT INTO TB_DTN_USUARIO (nm_usuario, ds_email, ds_senha, fl_usuario) VALUES
 ('Giovana Freitas', 'giovana@gmail.com', 'giovana123', null);
@@ -39,7 +39,7 @@ INSERT INTO TB_DTN_POSTAGEM_FAVORITA (cd_postagem, cd_usuario) VALUES
 (4, 1);
 
 INSERT INTO TB_DTN_POSTAGEM_FAVORITA (cd_postagem, cd_usuario) VALUES
-(2, 1);
+(2, 3);
 
 INSERT INTO TB_DTN_POSTAGEM_FAVORITA (cd_postagem, cd_usuario) VALUES
 (4, 2);

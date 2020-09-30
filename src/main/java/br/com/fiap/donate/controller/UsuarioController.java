@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,12 +66,12 @@ public class UsuarioController {
 	}
 
 	//Não remove pq tem fk em outras tabelas
-//	@DeleteMapping("/{id}")
+//	@DeleteMapping("/{id}")	
 //	@Transactional
 //	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		Optional<Usuario> optional = usuarioRepository.findById(id);
+//		Optional<Usuario> optional = usuarioService.findById(id);
 //		if (optional.isPresent()) {
-//			usuarioRepository.deleteById(id);
+//			usuarioService.deleteById(id);
 //			return ResponseEntity.ok().build();
 //		}
 //		

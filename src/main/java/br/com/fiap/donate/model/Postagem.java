@@ -15,9 +15,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import br.com.fiap.donate.repository.PostagemRepository;
-
-
 
 @Entity
 @Table(name = "TB_DTN_POSTAGEM")
@@ -47,22 +44,13 @@ public class Postagem {
 	 * Relacionamento muitos para muitos
 	 * Vários usuários podem reagir a várias postagens
 	 */
-	@ManyToMany(cascade = CascadeType.REMOVE)
+	@ManyToMany(cascade = CascadeType.REMOVE )
 	@JoinTable(name = "TB_DTN_POSTAGEM_REACAO",
 	joinColumns = @JoinColumn(name = "cd_postagem"),
 	inverseJoinColumns = @JoinColumn(name = "cd_usuario"))
 	private List<Usuario> usuarios;
 	
-	
-	
-	public Postagem update(Long id, PostagemRepository postagemRepository) {
-		Postagem postagem = postagemRepository.getOne(id);
-		
-		postagem.setFoto(this.foto);
-		postagem.setTexto(this.texto);
-		
-		return postagem;
-	}
+
 	public Postagem() {
 	}
 	public Postagem(byte[] foto, String texto, Usuario usuario) {

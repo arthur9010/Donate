@@ -7,11 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-
-import br.com.fiap.donate.service.UsuarioService;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 
 @Entity
-@Table(name = "TB_DTN_USUARIO")
+@Table(name = "TB_DTN_USUARIO", uniqueConstraints = @UniqueConstraint(columnNames = "ds_email"))
 public class Usuario {
 
 	@Id
@@ -22,7 +22,7 @@ public class Usuario {
 	@Column(name = "nm_usuario", length = 20, nullable = false)
 	private String nome;
 
-	
+	@Email
 	@Column(name = "ds_email", length = 60, nullable = false)
 	private String email;
 
@@ -33,17 +33,6 @@ public class Usuario {
 	@Column(name = "fl_usuario")
 	private byte[] foto;
 	
-	
-//	public Usuario update(Long id, UsuarioService usuarioService) {
-//		Usuario usuario = usuarioService.getOne(id);
-//		
-//		usuario.setNome(this.nome);
-//		usuario.setEmail(this.email);
-//		usuario.setSenha(this.senha);
-//		usuario.setFoto(this.foto);
-//		
-//		return usuario;
-//	}	
 	public Usuario() {
 	}
 	public Usuario(String nome, String email, String senha, byte[] foto) {

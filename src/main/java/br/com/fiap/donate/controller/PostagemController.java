@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,22 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.donate.model.Postagem;
-import br.com.fiap.donate.model.Usuario;
-import br.com.fiap.donate.repository.PostagemRepository;
+import br.com.fiap.donate.service.PostagemService;
 
 @RestController
 @RequestMapping("/post")
 public class PostagemController {
 
 	@Autowired
-	private PostagemRepository postagemRepository;
+	private PostagemService postagemService;
 
 
 	//FUNCIONANDO
 	//http://localhost:8080/post
 	@GetMapping
 	public ResponseEntity<List<Postagem>> findAll() {
-		return ResponseEntity.ok(postagemRepository.findAll());
+		return ResponseEntity.ok(postagemService.findAll());
 	}
 
 	//FUNCIONANDO
@@ -41,14 +39,14 @@ public class PostagemController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<?> create(@Valid @RequestBody Postagem postagem) {	
-		return ResponseEntity.ok(postagemRepository.save(postagem));
+		return ResponseEntity.ok(postagemService.save(postagem));
 	}
 
 	//FUNCIONANDO
 	//http://localhost:8080/post/{id}
 	@GetMapping("/{id}")
 	public ResponseEntity<Postagem> findById(@PathVariable Long id) {
-		Optional<Postagem> postagem = postagemRepository.findById(id);
+		Optional<Postagem> postagem = postagemService.findById(id);
 		if (!postagem.isPresent()) {
 			ResponseEntity.notFound().build();
 		}
@@ -60,18 +58,18 @@ public class PostagemController {
 	@PutMapping("/{id}")
 	@Transactional
 	public ResponseEntity<Postagem> update(@PathVariable Long id, @Valid @RequestBody Postagem postagem) {
-		if (!postagemRepository.findById(id).isPresent()) {
+		if (!postagemService.findById(id).isPresent()) {
 			ResponseEntity.notFound().build();
 		}
-		return ResponseEntity.ok(postagem.update(id, postagemRepository));
+		return ResponseEntity.ok(postagemService.update(id, postagem));
 	}
 	
 //	@DeleteMapping("/{id}")
 //	@Transactional
 //	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		Optional<Postagem> optional = postagemRepository.findById(id);
+//		Optional<Postagem> optional = postagemService.findById(id);
 //		if (optional.isPresent()) {
-//			postagemRepository.deleteById(id);
+//			postagemService.deleteById(id);
 //			return ResponseEntity.ok().build();
 //		}
 //		
