@@ -1,0 +1,10 @@
+br\com\fiap\donate\repository\PostagemRepository.class
+br\com\fiap\donate\service\UsuarioService.class
+br\com\fiap\donate\controller\PostagemController.class
+br\com\fiap\donate\controller\UsuarioController.class
+br\com\fiap\donate\model\Postagem.class
+br\com\fiap\donate\repository\UsuarioRepository.class
+br\com\fiap\donate\model\Comentario.class
+br\com\fiap\donate\model\Usuario.class
+br\com\fiap\donate\model\PostagemFavorita.class
+br\com\fiap\donate\DonateApplication.class
