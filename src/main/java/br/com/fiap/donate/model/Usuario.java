@@ -12,7 +12,7 @@ import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "TB_DTN_USUARIO", uniqueConstraints = @UniqueConstraint(columnNames = "ds_email"))
-public class Usuario {
+public class Usuario{
 
 	@Id
 	@Column(name = "cd_usuario", length = 5, nullable = false)
@@ -94,5 +94,4 @@ public class Usuario {
 			return false;
 		return true;
 	}
-	
 }
