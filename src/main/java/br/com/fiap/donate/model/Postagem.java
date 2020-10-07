@@ -1,6 +1,5 @@
 package br.com.fiap.donate.model;
 
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,9 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -39,17 +36,6 @@ public class Postagem {
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "cd_usuario", nullable = false)
 	private Usuario usuario;
-	
-	/*
-	 * Relacionamento muitos para muitos
-	 * Vários usuários podem reagir a várias postagens
-	 */
-	@ManyToMany(cascade = CascadeType.REMOVE )
-	@JoinTable(name = "TB_DTN_POSTAGEM_REACAO",
-	joinColumns = @JoinColumn(name = "cd_postagem"),
-	inverseJoinColumns = @JoinColumn(name = "cd_usuario"))
-	private List<Usuario> usuarios;
-	
 
 	public Postagem() {
 	}
@@ -84,13 +70,6 @@ public class Postagem {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
