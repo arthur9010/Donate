@@ -1,9 +1,11 @@
 br\com\fiap\donate\controller\ComentarioController.class
 br\com\fiap\donate\service\UsuarioService.class
 br\com\fiap\donate\controller\PostagemFavoritaController.class
+br\com\fiap\donate\controller\LoginController.class
 br\com\fiap\donate\model\Postagem.class
 br\com\fiap\donate\repository\PostagemFavoritaRepository.class
 br\com\fiap\donate\model\Comentario.class
+br\com\fiap\donate\model\Login.class
 br\com\fiap\donate\service\PostagemService.class
 br\com\fiap\donate\DonateApplication.class
 br\com\fiap\donate\repository\PostagemRepository.class
