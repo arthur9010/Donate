@@ -52,6 +52,18 @@ public class PostagemController {
 		}
 		return ResponseEntity.ok(postagem.get());
 	}
+	
+	//FUNCIONANDO
+	//http://localhost:8080/post/user/{id}
+	@GetMapping("user/{userId}")
+	public ResponseEntity<List<Postagem>> findByPostsUsuario (@PathVariable Long userId) {
+		Optional<List<Postagem>> postagemUsuario = postagemService.findByPostsUsuarioId(userId);
+		if(!postagemUsuario.isPresent()) {
+			ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(postagemUsuario.get());
+	}
+	
 
 	//FUNCIONANDO
 	//http://localhost:8080/post/{id}

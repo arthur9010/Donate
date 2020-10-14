@@ -40,8 +40,11 @@ public class PostagemService {
 		Postagem postagem = postagemRepository.getOne(id);
 		
 		postagem.setTexto(post.getTexto());
-		postagem.setFoto(post.getFoto());
 		
 		return postagemRepository.save(postagem);
+	}
+	
+	public Optional<List<Postagem>> findByPostsUsuarioId (Long userId) {
+		return postagemRepository.findByUsuarioCodigo(userId);
 	}
 }

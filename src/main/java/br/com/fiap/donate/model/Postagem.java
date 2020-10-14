@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,10 +20,6 @@ public class Postagem {
 	@Column(name = "cd_postagem", length = 5, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
-	@Lob
-	@Column(name = "fl_postagem")
-	private byte[] foto;
 	
 	@Column(name = "ds_postagem", length = 1000, nullable = false)
 	private String texto;
@@ -39,9 +34,7 @@ public class Postagem {
 
 	public Postagem() {
 	}
-	public Postagem(byte[] foto, String texto, Usuario usuario) {
-		super();
-		this.foto = foto;
+	public Postagem(String texto, Usuario usuario) {
 		this.texto = texto;
 		this.usuario = usuario;
 	}
@@ -51,12 +44,6 @@ public class Postagem {
 	}
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
-	}
-	public byte[] getFoto() {
-		return foto;
-	}
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
 	}
 	public String getTexto() {
 		return texto;
