@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +49,7 @@ public class PostagemController {
 	public ResponseEntity<Postagem> findById(@PathVariable Long id) {
 		Optional<Postagem> postagem = postagemService.findById(id);
 		if (!postagem.isPresent()) {
-			ResponseEntity.notFound().build();
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(postagem.get());
 	}
@@ -56,10 +57,10 @@ public class PostagemController {
 	//FUNCIONANDO
 	//http://localhost:8080/post/user/{id}
 	@GetMapping("user/{userId}")
-	public ResponseEntity<List<Postagem>> findByPostsUsuario (@PathVariable Long userId) {
+	public ResponseEntity<List<Postagem>> findByPostsUsuarioId (@PathVariable Long userId) {
 		Optional<List<Postagem>> postagemUsuario = postagemService.findByPostsUsuarioId(userId);
 		if(!postagemUsuario.isPresent()) {
-			ResponseEntity.notFound().build();
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(postagemUsuario.get());
 	}
@@ -71,20 +72,20 @@ public class PostagemController {
 	@Transactional
 	public ResponseEntity<Postagem> update(@PathVariable Long id, @Valid @RequestBody Postagem postagem) {
 		if (!postagemService.findById(id).isPresent()) {
-			ResponseEntity.notFound().build();
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(postagemService.update(id, postagem));
 	}
 	
-//	@DeleteMapping("/{id}")
-//	@Transactional
-//	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		Optional<Postagem> optional = postagemService.findById(id);
-//		if (optional.isPresent()) {
-//			postagemService.deleteById(id);
-//			return ResponseEntity.ok().build();
-//		}
-//		
-//		return ResponseEntity.notFound().build();
-//	}
+	@DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Optional<Postagem> optional = postagemService.findById(id);
+		if (optional.isPresent()) {
+			postagemService.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
 }

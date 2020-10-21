@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,7 @@ public class ComentarioController {
 	public ResponseEntity<Comentario> findById(@PathVariable Long id) {
 		Optional<Comentario> comentario = comentarioService.findById(id);
 		if (!comentario.isPresent()) {
-			ResponseEntity.notFound().build();
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(comentario.get());
 	}
@@ -59,20 +60,33 @@ public class ComentarioController {
 	@Transactional
 	public ResponseEntity<Comentario> update(@PathVariable Long id, @Valid @RequestBody Comentario comentario) {
 		if (!comentarioService.findById(id).isPresent()) {
-			ResponseEntity.notFound().build();
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(comentarioService.update(id, comentario));
 	}
 	
-//	@DeleteMapping("/{id}")
-//	@Transactional
-//	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		Optional<Comentario> optional = comentarioService.findById(id);
-//		if (optional.isPresent()) {
-//			comentarioService.deleteById(id);
-//			return ResponseEntity.ok().build();
-//		}
-//		
-//		return ResponseEntity.notFound().build();
-//	}
+	//http://localhost:8080/comment/post/{id}
+	@GetMapping("post/{postId}")
+	public ResponseEntity<List<Comentario>> findByComentarioPostId (@PathVariable Long postId) {
+		Optional<List<Comentario>> comentarioPostagem = comentarioService.findByComentarioPostId(postId);
+		if(!comentarioPostagem.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(comentarioPostagem.get());
+		
+	}
+	
+	@DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Optional<Comentario> optional = comentarioService.findById(id);
+		if (optional.isPresent()) {
+			comentarioService.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
+	
+	
 }

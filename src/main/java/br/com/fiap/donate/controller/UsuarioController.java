@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +49,7 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> findById(@PathVariable Long id) {
 		Optional<Usuario> usuario = usuarioService.findById(id);
 		if (!usuario.isPresent()) {
-			ResponseEntity.notFound().build();
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(usuario.get());
 	}
@@ -60,21 +61,21 @@ public class UsuarioController {
 	@Transactional
 	public ResponseEntity<Usuario> update(@PathVariable Long id, @Valid @RequestBody Usuario usuario) {
 		if (!usuarioService.findById(id).isPresent()) {
-			ResponseEntity.notFound().build();
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(usuarioService.update(id, usuario));
 	}
 
 	//Não remove pq tem fk em outras tabelas
-//	@DeleteMapping("/{id}")	
-//	@Transactional
-//	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		Optional<Usuario> optional = usuarioService.findById(id);
-//		if (optional.isPresent()) {
-//			usuarioService.deleteById(id);
-//			return ResponseEntity.ok().build();
-//		}
-//		
-//		return ResponseEntity.notFound().build();
-//	}
+	@DeleteMapping("/{id}")	
+	@Transactional
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Optional<Usuario> optional = usuarioService.findById(id);
+		if (optional.isPresent()) {
+			usuarioService.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
 }

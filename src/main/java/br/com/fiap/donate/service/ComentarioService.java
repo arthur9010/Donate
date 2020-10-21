@@ -41,4 +41,8 @@ public class ComentarioService {
 		
 		return comentarioRepository.save(comentario);
 	}
+	
+	public Optional<List<Comentario>> findByComentarioPostId (Long postId) {
+		return comentarioRepository.findByPostagemCodigo(postId);
+	}
 }

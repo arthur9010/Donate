@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,7 @@ public class PostagemFavoritaController {
 	public ResponseEntity<PostagemFavorita> findById(@PathVariable Long id) {
 		Optional<PostagemFavorita> favorita = favoritaService.findById(id);
 		if (!favorita.isPresent()) {
-			ResponseEntity.notFound().build();
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(favorita.get());
 	}
@@ -52,15 +53,15 @@ public class PostagemFavoritaController {
 		return ResponseEntity.ok(favoritaService.save(favorita));
 	}
 	
-//	@DeleteMapping("/{id}")
-//	@Transactional
-//	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		Optional<PostagemFavorita> optional = favoritaService.findById(id);
-//		if (optional.isPresent()) {
-//			favoritaService.deleteById(id);
-//			return ResponseEntity.ok().build();
-//		}
-//		
-//		return ResponseEntity.notFound().build();
-//	}
+	@DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Optional<PostagemFavorita> optional = favoritaService.findById(id);
+		if (optional.isPresent()) {
+			favoritaService.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
 }

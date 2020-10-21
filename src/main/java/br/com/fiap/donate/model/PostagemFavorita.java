@@ -25,7 +25,7 @@ public class PostagemFavorita {
 	 */
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "cd_usuario", nullable = false)
-	private Usuario usuarioPostagemFavorita;
+	private Usuario usuario;
 	
 	/*
 	 * Relacionamento muitos para um
@@ -39,8 +39,8 @@ public class PostagemFavorita {
 	public PostagemFavorita() {
 	}
 
-	public PostagemFavorita(Postagem postagem, Usuario usuarioPostagemFavorita) {
-		this.usuarioPostagemFavorita = usuarioPostagemFavorita;
+	public PostagemFavorita(Postagem postagem, Usuario usuario) {
+		this.usuario = usuario;
 		this.postagem = postagem;
 	}
 
@@ -53,11 +53,11 @@ public class PostagemFavorita {
 	}
 
 	public Usuario getUsuario() {
-		return usuarioPostagemFavorita;
+		return usuario;
 	}
 
-	public void setUsuario(Usuario usuarioPostagemFavorita) {
-		this.usuarioPostagemFavorita = usuarioPostagemFavorita;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Postagem getPostagem() {

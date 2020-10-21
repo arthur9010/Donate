@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.donate.model.Usuario;
+import br.com.fiap.donate.repository.ComentarioRepository;
+import br.com.fiap.donate.repository.PostagemFavoritaRepository;
+import br.com.fiap.donate.repository.PostagemRepository;
 import br.com.fiap.donate.repository.UsuarioRepository;
 
 @Service
@@ -14,7 +17,14 @@ public class UsuarioService {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	@Autowired
+	private PostagemRepository postagemRepository; 
+	@Autowired
+	private PostagemFavoritaRepository favoritaRepository;
+	@Autowired
+	private ComentarioRepository comentarioRepository;
 
+	
 	public UsuarioService(UsuarioRepository usuarioRepository) {
 		this.usuarioRepository = usuarioRepository;
 	}
@@ -31,8 +41,11 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 
-	public void deleteById(Long id) {
-		usuarioRepository.deleteById(id);
+	public void deleteById(Long userId) {
+		postagemRepository.deleteByUsuarioCodigo(userId);
+		//favoritaRepository.deleteByUsuarioCodigo(userId);
+		//comentarioRepository.deleteByUsuarioCodigo(userId);
+		usuarioRepository.deleteById(userId);
 	}
 
 	public Usuario update(Long id, Usuario user) {
