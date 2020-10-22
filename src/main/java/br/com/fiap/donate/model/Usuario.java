@@ -10,8 +10,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "TB_DTN_USUARIO", uniqueConstraints = @UniqueConstraint(columnNames = "ds_email"))
 public class Usuario{
@@ -28,7 +26,6 @@ public class Usuario{
 	@Column(name = "ds_email", length = 60, nullable = false)
 	private String email;
 
-	@JsonIgnore
 	@Column(name = "ds_senha", length = 20, nullable = false)
 	private String senha;
 

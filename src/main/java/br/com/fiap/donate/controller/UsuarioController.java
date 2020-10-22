@@ -70,12 +70,11 @@ public class UsuarioController {
 	@DeleteMapping("/{id}")	
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable Long id) {
-		Optional<Usuario> optional = usuarioService.findById(id);
-		if (optional.isPresent()) {
-			usuarioService.deleteById(id);
-			return ResponseEntity.ok().build();
+		if(!usuarioService.findById(id).isPresent()) {
+			return ResponseEntity.notFound().build();
 		}
 		
-		return ResponseEntity.notFound().build();
+		usuarioService.deleteById(id);	
+		return ResponseEntity.ok().build();
 	}
 }
